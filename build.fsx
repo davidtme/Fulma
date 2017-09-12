@@ -159,7 +159,7 @@ Target "PublishDocs" (fun _ ->
 
 // Build order
 "Meta"
-    // ==> "InstallDotNetCore"
+    ==> "InstallDotNetCore"
     ==> "Clean"
     ==> "Install"
     ==> "Build"

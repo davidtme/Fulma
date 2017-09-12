@@ -1,3 +1,7 @@
+### 0.1.2
+
+* Fix `Navbar.menu` should generate a `div` not a `span`
+
 ### 0.1.1
 
 * Implement `Tabs` components with documentation
