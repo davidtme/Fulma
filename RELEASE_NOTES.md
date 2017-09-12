@@ -1,3 +1,7 @@
+### 0.1.3
+
+* Fix `Navbar.menu` props
+
 ### 0.1.2
 
 * Fix `Navbar.menu` should generate a `div` not a `span`
