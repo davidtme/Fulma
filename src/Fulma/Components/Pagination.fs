@@ -28,13 +28,13 @@ module Pagination =
         | CustomClass of string
         | Props of IHTMLProp list
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Alignment : string option
           Size : string option
           CustomClass : string option
           Props : IHTMLProp list }
 
-        static member Empty =
+    let inline internal defaultOptions() =
             { Alignment = None
               Size = None
               CustomClass = None
@@ -47,12 +47,12 @@ module Pagination =
             | CustomClass of string
             | Props of IHTMLProp list
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { IsCurrent : bool
               CustomClass : string option
               Props : IHTMLProp list }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { IsCurrent = false
                   CustomClass = None
                   Props = [] }
@@ -66,7 +66,7 @@ module Pagination =
             | CustomClass customClass -> { result with CustomClass = Some customClass }
             | Props props -> { result with Props = props }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes
                         Classes.Container
                         [ opts.Alignment; opts.Size ]
@@ -92,7 +92,7 @@ module Pagination =
             | Link.CustomClass customClass -> { result with CustomClass = Some customClass }
             | Link.Props props -> { result with Props = props }
 
-        let opts = options |> List.fold parseOptions Link.Options.Empty
+        let opts = options |> List.fold parseOptions (Link.defaultOptions())
 
         li [ ]
            [ a [ yield Helpers.classes Classes.Link [opts.CustomClass] [Classes.State.IsCurrent, opts.IsCurrent]

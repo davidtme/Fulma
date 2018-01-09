@@ -948,7 +948,7 @@ module FontAwesome =
                 function
                 | Inverse       -> Classes.Colors.Inverse
 
-            type IconOptions =
+            type [<Fable.Core.CompileAsArray>] IconOptions =
                 {
                     Icon        : string option
                     Size        : string option
@@ -960,8 +960,7 @@ module FontAwesome =
                     Color       : string option
                     IsLi        : bool
                 }
-                with
-                    static member Empty =
+            let inline defaultIconOptions() =
                         {
                             Icon        = None
                             Size        = None
@@ -974,24 +973,22 @@ module FontAwesome =
                             IsLi        = false
                         }
 
-            type StackParentOptions =
+            type [<Fable.Core.CompileAsArray>] StackParentOptions =
                 {
                     Size  : string option
                 }
-                with
-                    static member Empty =
+            let inline defaultStackParentOptions() =
                         {
                             Size    = None
                         }
 
-            type StackChildOptions =
+            type [<Fable.Core.CompileAsArray>] StackChildOptions =
                 {
                     Size  : string option
                     Color : string option
                     Icon  : string option
                 }
-                with
-                    static member Empty =
+            let inline defaultStackChildOptions() =
                         {
                             Size    = None
                             Color   = None
@@ -1037,7 +1034,7 @@ module FontAwesome =
                     | ChildColor c              -> { result with Color  = ofColor c            |> Some }
                     | ChildIcon faIcon          -> { result with Icon   = unbox<string> faIcon |> Some }
 
-            let opts = faOptions |> List.fold parseOptions StackChildOptions.Empty
+            let opts = faOptions |> List.fold parseOptions (defaultStackChildOptions())
             i [Helpers.classes "fa" [opts.Icon; opts.Size; opts.Color] []] []
 
         let stackParent (faOptions: StackParentOption list) children =
@@ -1045,7 +1042,7 @@ module FontAwesome =
                     match option with
                     | ParentSize s        -> { result with Size   = ofSize s  |> Some }
 
-            let opts = faOptions |> List.fold parseOptions StackParentOptions.Empty
+            let opts = faOptions |> List.fold parseOptions (defaultStackParentOptions())
             span [Helpers.classes "fa-stack" [opts.Size] []] children
 
         let toIconOptions (faOptions: IconOption list) =
@@ -1061,7 +1058,7 @@ module FontAwesome =
                     | Animation a   -> { result with Animation  = ofAnimation a         |> Some }
                     | IsLi          -> { result with IsLi       = false }
 
-            faOptions |> List.fold parseOptions IconOptions.Empty
+            faOptions |> List.fold parseOptions (defaultIconOptions())
 
 
         //Logic used to display one icon alone or as one item in an unordered list:

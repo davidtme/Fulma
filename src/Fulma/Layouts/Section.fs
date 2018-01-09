@@ -22,12 +22,12 @@ module Section =
         | IsMedium
         | IsLarge
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Props : IHTMLProp list
           CustomClass : string option
           Spacing : string option }
 
-        static member Empty =
+    let inline internal defaultOptions() =
             { Props = []
               CustomClass = None
               Spacing = None }
@@ -40,7 +40,7 @@ module Section =
             | IsLarge -> { result with Spacing = Classes.Spacing.IsLarge |> Some }
             | CustomClass customClass -> { result with CustomClass = Some customClass }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes Classes.Container [opts.CustomClass; opts.Spacing] []
 
         section (classes::opts.Props) children

@@ -37,14 +37,14 @@ module Hero =
         | CustomClass of string
         | Props of IHTMLProp list
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Props : IHTMLProp list
           IsBold : bool
           Size : string option
           Color : string option
           CustomClass : string option }
 
-        static member Empty =
+    let inline internal defaultOptions() =
             { Props = []
               IsBold = false
               Size = None
@@ -63,7 +63,7 @@ module Hero =
             | IsBold -> { result with IsBold = true }
             | CustomClass customClass -> { result with CustomClass = Some customClass }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes Classes.Container
                         [opts.Color; opts.Size; opts.CustomClass]
                         [Classes.Style.IsBold, opts.IsBold]

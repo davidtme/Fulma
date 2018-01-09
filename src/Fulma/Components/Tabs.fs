@@ -30,7 +30,7 @@ module Tabs =
         | CustomClass of string
         | Props of IHTMLProp list
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Alignment : string option
           Size : string option
           IsBoxed : bool
@@ -39,7 +39,7 @@ module Tabs =
           CustomClass : string option
           Props : IHTMLProp list }
 
-        static member Empty =
+    let inline internal defaultOptions() =
             { Alignment = None
               IsBoxed = false
               IsToggle = false
@@ -55,12 +55,12 @@ module Tabs =
             | CustomClass of string
             | Props of IHTMLProp list
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { IsActive : bool
               CustomClass : string option
               Props : IHTMLProp list }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { IsActive = false
                   CustomClass = None
                   Props = [] }
@@ -77,7 +77,7 @@ module Tabs =
             | CustomClass customClass -> { result with CustomClass = Some customClass }
             | Props props -> { result with Props = props }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes
                         Classes.Container
                         [ opts.Alignment; opts.Size ]
@@ -95,7 +95,7 @@ module Tabs =
             | Tab.CustomClass customClass -> { result with CustomClass = Some customClass }
             | Tab.Props props -> { result with Props = props }
 
-        let opts = options |> List.fold parseOptions Tab.Options.Empty
+        let opts = options |> List.fold parseOptions (Tab.defaultOptions())
         let classes = classList [ Classes.State.IsActive, opts.IsActive ] :> IHTMLProp
         li (classes::opts.Props)
             children

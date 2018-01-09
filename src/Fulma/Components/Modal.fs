@@ -30,12 +30,12 @@ module Modal =
         | IsActive of bool
         | CustomClass of string
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Props : IHTMLProp list
           IsActive : bool
           CustomClass : string option }
 
-        static member Empty =
+    let inline internal defaultOptions() =
             { Props = []
               IsActive = false
               CustomClass = None }
@@ -47,13 +47,13 @@ module Modal =
             | CustomClass of string
             | OnClick of (MouseEvent -> unit)
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { Props : IHTMLProp list
               Size : string option
               CustomClass : string option
               OnClick : (MouseEvent -> unit) option }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { Props = []
                   Size = None
                   CustomClass = None
@@ -66,7 +66,7 @@ module Modal =
             | CustomClass customClass -> { result with CustomClass = Some customClass }
             | IsActive state -> { result with IsActive = state }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes
                         Classes.Container
                         [ ]
@@ -86,7 +86,7 @@ module Modal =
             | Close.Size size -> { result with Size = ofSize size |> Some }
             | Close.OnClick cb -> { result with OnClick = Some cb }
 
-        let opts = options |> List.fold parseOptions Close.Options.Empty
+        let opts = options |> List.fold parseOptions (Close.defaultOptions())
         let classes = Helpers.classes Classes.Close.Container [opts.Size] []
         let opts =
             match opts.OnClick with

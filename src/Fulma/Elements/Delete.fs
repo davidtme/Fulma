@@ -17,12 +17,12 @@ module Delete =
         | CustomClass of string
         | OnClick of (MouseEvent -> unit)
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Size : string option
           Props : IHTMLProp list
           CustomClass : string option
           OnClick : (MouseEvent -> unit) option }
-        static member Empty =
+    let inline internal defaultOptions() =
             { Size = None
               Props = []
               CustomClass = None
@@ -38,7 +38,7 @@ module Delete =
             | CustomClass customClass -> { result with CustomClass = Some customClass }
             | OnClick cb -> { result with OnClick = cb |> Some }
 
-        let opts = options |> List.fold parseOption Options.Empty
+        let opts = options |> List.fold parseOption (defaultOptions())
         let classes = Helpers.classes
                         Classes.Container
                         [ opts.Size; opts.CustomClass ]

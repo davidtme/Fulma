@@ -29,14 +29,14 @@ module Dropdown =
         | Props of IHTMLProp list
         | CustomClass of string
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Props : IHTMLProp list
           IsActive : bool
           IsHoverable : bool
           IsRight : bool
           CustomClass : string option }
 
-        static member Empty =
+    let inline internal defaultOptions() =
             { Props = []
               IsActive = false
               IsHoverable = false
@@ -50,12 +50,12 @@ module Dropdown =
             | Props of IHTMLProp list
             | CustomClass of string
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { Props : IHTMLProp list
               IsActive : bool
               CustomClass : string option }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { Props = []
                   IsActive = false
                   CustomClass = None }
@@ -69,7 +69,7 @@ module Dropdown =
             | Props props -> { result with Props = props }
             | CustomClass customClass -> { result with CustomClass = Some customClass }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes =
             [ Classes.Alignment.IsRight, opts.IsRight
               Classes.State.IsActive, opts.IsActive
@@ -100,7 +100,7 @@ module Dropdown =
             | Item.Props props -> { result with Props = props }
             | Item.CustomClass customClass -> { result with CustomClass = Some customClass }
 
-        let opts = options |> List.fold parseOptions Item.Options.Empty
+        let opts = options |> List.fold parseOptions (Item.defaultOptions())
         let classes =
             [ Classes.Item.State.IsActive, opts.IsActive ]
             |> Helpers.classes Classes.Item.Container [opts.CustomClass]

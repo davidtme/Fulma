@@ -43,7 +43,7 @@ module File =
         | HasName
         | Color of IColor
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { CustomClass : string option
           Props : IHTMLProp list
           IsFocused : bool
@@ -55,7 +55,7 @@ module File =
           Color : string option
           HasName : bool}
 
-        static member Empty =
+    let inline internal defaultOptions() =
             { CustomClass = None
               Props = []
               IsFocused = false
@@ -83,7 +83,7 @@ module File =
             | IsBoxed -> { result with IsBoxed = true }
             | HasName -> { result with HasName = true }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes =
             Helpers.classes
                 Classes.Container

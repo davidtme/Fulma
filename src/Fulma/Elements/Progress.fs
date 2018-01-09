@@ -18,14 +18,14 @@ module Progress =
         | Max of int
         | CustomClass of string
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Size : string option
           Color : string option
           Props : IHTMLProp list
           Max : int option
           Value : int option
           CustomClass : string option }
-        static member Empty =
+    let inline internal defaultOptions() =
             { Size = None
               Color = None
               Props = []
@@ -43,7 +43,7 @@ module Progress =
             | Max max -> { result with Max = max |> Some }
             | CustomClass customClass -> { result with CustomClass = customClass |> Some }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes
                         Classes.Container
                         [ opts.Size; opts.Color; opts.CustomClass ]

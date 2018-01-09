@@ -42,7 +42,7 @@ module Button =
         | OnClick of (MouseEvent -> unit)
         | CustomClass of string
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Level : string option
           Size : string option
           IsOutlined : bool
@@ -52,7 +52,7 @@ module Button =
           Props : IHTMLProp list
           CustomClass : string option
           OnClick : (MouseEvent -> unit) option }
-        static member Empty =
+    let inline internal defaultOptions() =
             { Level = None
               Size = None
               IsOutlined = false
@@ -87,7 +87,7 @@ module Button =
             | CustomClass customClass -> { result with CustomClass = Some customClass }
             | OnClick cb -> { result with OnClick = cb |> Some }
 
-        let opts = options |> List.fold parseOption Options.Empty
+        let opts = options |> List.fold parseOption (defaultOptions())
         let classes = Helpers.classes
                         Classes.Container
                         [ opts.Level; opts.Size; opts.State; opts.CustomClass ]

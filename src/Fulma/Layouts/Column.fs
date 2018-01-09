@@ -457,7 +457,7 @@ module Column =
             | IsNarrow -> Classes.WideScreen.Offset.IsNarrow
             | IsFull -> Classes.WideScreen.Offset.IsFull
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Width : string option
           Offset : string option
           DesktopWidth : string option
@@ -470,7 +470,7 @@ module Column =
           WideScreenpOffset : string option
           CustomClass : string option
           Props : IHTMLProp list }
-        static member Empty =
+    let inline internal defaultOptions() =
             { Width = None
               Offset = None
               DesktopWidth = None
@@ -513,7 +513,7 @@ module Column =
                 Fable.Import.JS.console.warn("Error when parsing column option " + string x)
                 result
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes
                         Classes.Container
                         [ opts.Width

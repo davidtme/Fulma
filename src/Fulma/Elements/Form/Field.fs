@@ -36,13 +36,13 @@ module Field =
         | CustomClass of string
         | Props of IHTMLProp list
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { HasAddons : string option
           IsGrouped : string option
           Layout : string option
           CustomClass : string option
           Props : IHTMLProp list }
-        static member Empty =
+    let inline internal defaultOptions() =
             { HasAddons = None
               IsGrouped = None
               Layout = None
@@ -58,7 +58,7 @@ module Field =
         { Size : string option
           CustomClass : string option
           Props : IHTMLProp list }
-        static member Empty =
+    let inline internal defaultFieldLabelOptions() =
             { Size = None
               CustomClass = None
               Props = [] }
@@ -77,7 +77,7 @@ module Field =
             | Option.CustomClass customClass -> { result with CustomClass = customClass |> Some }
             | Option.Props props -> { result with Props = props }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes
                         Classes.Container
                         [ opts.HasAddons; opts.IsGrouped; opts.Layout; opts.CustomClass ]
@@ -93,7 +93,7 @@ module Field =
             | CustomClass customClass -> { result with CustomClass = customClass |> Some }
             | Props props -> { result with Props = props }
 
-        let opts = options |> List.fold parseOptions FieldLabelOptions.Empty
+        let opts = options |> List.fold parseOptions (defaultFieldLabelOptions())
         let classes = Helpers.classes
                         Classes.Label
                         [ opts.Size; opts.CustomClass ]

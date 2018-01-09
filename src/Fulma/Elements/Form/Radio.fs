@@ -17,12 +17,12 @@ module Radio =
             | Props of IHTMLProp list
             | Name of string
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { CustomClass : string option
               Props : IHTMLProp list
               Name : string option }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { CustomClass = None
                   Props = []
                   Name = None }
@@ -39,7 +39,7 @@ module Radio =
             | Input.CustomClass customClass -> { result with CustomClass = customClass |> Some }
             | Input.Props props -> { result with Props = props }
 
-        let opts = options |> List.fold parseOptions Input.Options.Empty
+        let opts = options |> List.fold parseOptions (Input.defaultOptions())
         let classes = Helpers.classes Classes.Container [opts.CustomClass] []
         let t = Type "radio" :> IHTMLProp
         let attrs =

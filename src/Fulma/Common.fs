@@ -66,11 +66,11 @@ module Common =
         | CustomClass of string
         | Props of IHTMLProp list
 
-    type GenericOptions =
+    type [<Fable.Core.CompileAsArray>] GenericOptions =
         { CustomClass : string option
           Props : IHTMLProp list }
 
-        static member Empty =
+    let inline internal defaultGenericOptions() =
             { CustomClass = None
               Props = [] }
 
@@ -80,7 +80,7 @@ module Common =
             | Props props -> { result with Props = props }
             | CustomClass customClass -> { result with CustomClass = Some customClass }
 
-        options |> List.fold parseOptions GenericOptions.Empty
+        options |> List.fold parseOptions (defaultGenericOptions())
 
     module Helpers =
 

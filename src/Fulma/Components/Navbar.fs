@@ -48,14 +48,14 @@ module Navbar =
         | Props of IHTMLProp list
         | CustomClass of string
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { HasShadow : bool
           Color : string option
           IsTransparent : bool
           CustomClass : string option
           Props : IHTMLProp list }
 
-        static member Empty =
+    let inline internal defaultOptions() =
             { HasShadow = false
               Color = None
               IsTransparent = false
@@ -69,12 +69,12 @@ module Navbar =
             | Props of IHTMLProp list
             | CustomClass of string
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { IsActive : bool
               CustomClass : string option
               Props : IHTMLProp list }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { IsActive = false
                   CustomClass = None
                   Props = [] }
@@ -89,7 +89,7 @@ module Navbar =
             | Props of IHTMLProp list
             | CustomClass of string
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { IsTab : bool
               IsActive : bool
               IsHoverable : bool
@@ -97,7 +97,7 @@ module Navbar =
               CustomClass : string option
               Props : IHTMLProp list }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { IsTab = false
                   IsActive = false
                   IsHoverable = false
@@ -115,7 +115,7 @@ module Navbar =
                 | Props props -> { result with Props = props }
                 | CustomClass customClass -> { result with CustomClass = Some customClass }
 
-            let opts = options |> List.fold parseOptions Options.Empty
+            let opts = options |> List.fold parseOptions (defaultOptions())
             let classes =
                 Helpers.classes Classes.Item.Container [opts.CustomClass]
                     [ Classes.Item.State.IsActive, opts.IsActive
@@ -135,12 +135,12 @@ module Navbar =
             | Props of IHTMLProp list
             | CustomClass of string
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { IsActive : bool
               CustomClass : string option
               Props : IHTMLProp list }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { IsActive = false
                   CustomClass = None
                   Props = [] }
@@ -152,7 +152,7 @@ module Navbar =
                 | CustomClass customClass -> { result with CustomClass = Some customClass}
                 | Props props -> { result with Props = props}
 
-            let opts = options |> List.fold parseOptions Options.Empty
+            let opts = options |> List.fold parseOptions (defaultOptions())
             let classes = Helpers.classes Classes.Link.Container [] [Classes.Link.State.IsActive, opts.IsActive]
             element (classes::opts.Props) children
 
@@ -168,14 +168,14 @@ module Navbar =
             | Props of IHTMLProp list
             | CustomClass of string
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { IsActive : bool
               IsBoxed : bool
               IsRight : bool
               Props : IHTMLProp list
               CustomClass : string option }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { IsActive = false
                   IsBoxed = false
                   IsRight = false
@@ -191,7 +191,7 @@ module Navbar =
                 | CustomClass customClass -> { result with CustomClass = Some customClass}
                 | Props props -> { result with Props = props}
 
-            let opts = options |> List.fold parseOptions Options.Empty
+            let opts = options |> List.fold parseOptions (defaultOptions())
             let classes = Helpers.classes Classes.Dropdown.Container [] [Classes.Dropdown.IsBoxed, opts.IsBoxed; Classes.Dropdown.IsRight, opts.IsRight; Classes.Dropdown.State.IsActive, opts.IsActive]
             element (classes::opts.Props) children
 
@@ -234,7 +234,7 @@ module Navbar =
             | CustomClass customClass -> { result with CustomClass = Some customClass }
             | Color color -> { result with Color = ofColor color |> Some }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes =
             Helpers.classes Classes.Container [opts.CustomClass; opts.Color]
                [ Classes.Style.HasShadow, opts.HasShadow
@@ -249,7 +249,7 @@ module Navbar =
             | Menu.Props props -> { result with Props = props }
             | Menu.CustomClass customClass -> { result with CustomClass = Some customClass }
 
-        let opts = options |> List.fold parseOptions Menu.Options.Empty
+        let opts = options |> List.fold parseOptions (Menu.defaultOptions())
         let classes =
             Helpers.classes Classes.Menu.Container [opts.CustomClass]
                 [Classes.Menu.State.IsActive, opts.IsActive]

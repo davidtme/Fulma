@@ -30,12 +30,12 @@ module Panel =
             | IsActive of bool
             | CustomClass of string
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { Props : IHTMLProp list
               CustomClass : string option
               IsActive : bool }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { Props = []
                   CustomClass = None
                   IsActive = false }
@@ -47,12 +47,12 @@ module Panel =
             | IsActive of bool
             | CustomClass of string
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { Props : IHTMLProp list
               CustomClass : string option
               IsActive : bool }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { Props = []
                   CustomClass = None
                   IsActive = false }
@@ -65,7 +65,7 @@ module Panel =
             | Block.CustomClass customClass -> { result with CustomClass = Some customClass }
 
 
-        let opts = options |> List.fold parseOptions Block.Options.Empty
+        let opts = options |> List.fold parseOptions (Block.defaultOptions())
         let classes = Helpers.classes Classes.Block.Container [opts.CustomClass] [Classes.Block.State.IsActive, opts.IsActive]
         div (classes::opts.Props) children
 
@@ -76,7 +76,7 @@ module Panel =
             | Block.IsActive state -> { result with IsActive = state }
             | Block.CustomClass customClass -> { result with CustomClass = Some customClass }
 
-        let opts = options |> List.fold parseOptions Block.Options.Empty
+        let opts = options |> List.fold parseOptions (Block.defaultOptions())
         let classes = Helpers.classes Classes.Block.Container [opts.CustomClass] [Classes.Block.State.IsActive, opts.IsActive]
         label (classes::opts.Props) children
 
@@ -102,7 +102,7 @@ module Panel =
             | Tab.IsActive state -> { result with IsActive = state }
             | Tab.CustomClass customClass -> { result with CustomClass = Some customClass }
 
-        let opts = options |> List.fold parseOptions Tab.Options.Empty
+        let opts = options |> List.fold parseOptions (Tab.defaultOptions())
         let classes = Helpers.classes "" [opts.CustomClass] [Classes.Tabs.Tab.State.IsActive, opts.IsActive]
         a (classes::opts.Props) children
 

@@ -36,13 +36,13 @@ module Heading =
         | CustomClass of string
         | Props of IHTMLProp list
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { TitleSize : string option
           TitleType : string
           IsSpaced : bool
           CustomClass : string option
           Props : IHTMLProp list }
-        static member Empty =
+    let inline internal defaultOptions() =
             { TitleSize = None
               TitleType = Classes.Title
               IsSpaced = false
@@ -67,7 +67,7 @@ module Heading =
             | CustomClass customClass -> { result with CustomClass = customClass |> Some }
             | Props props -> { result with Props = props }
 
-        let opts = options |> List.fold parseOption Options.Empty
+        let opts = options |> List.fold parseOption (defaultOptions())
         let classes = Helpers.classes
                         opts.TitleType
                         [ opts.TitleSize; opts.CustomClass ]

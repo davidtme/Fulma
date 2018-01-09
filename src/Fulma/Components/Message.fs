@@ -18,13 +18,13 @@ module Message =
         | Size of ISize
         | CustomClass of string
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Props : IHTMLProp list
           Color : string option
           Size : string option
           CustomClass : string option }
 
-        static member Empty =
+    let inline internal defaultOptions() =
             { Props = []
               Color = None
               Size = None
@@ -38,7 +38,7 @@ module Message =
             | CustomClass customClass -> { result with CustomClass = Some customClass }
             | Size size -> { result with Size = ofSize size |> Some }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes
                         Classes.Container
                         [ opts.Color; opts.CustomClass; opts.Size ]

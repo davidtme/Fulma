@@ -18,12 +18,12 @@ module Notification =
         | Props of IHTMLProp list
 
     // | AutoCloseDelay of float
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Color : string option
           CustomClass : string option
           Props : IHTMLProp list }
         // AutoCloseDelay: float option
-        static member Empty =
+    let inline internal defaultOptions() =
             { Color = None
               CustomClass = None
               Props = [] }
@@ -35,7 +35,7 @@ module Notification =
             | CustomClass customClass -> { result with CustomClass = Some customClass }
             | Props props -> { result with Props = props }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes Classes.Container [opts.CustomClass; opts.Color] []
         div (classes::opts.Props) children
 

@@ -32,13 +32,13 @@ module Columns =
         | CustomClass of string
         | Props of IHTMLProp list
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Display : string option
           Spacing : string option
           Alignment : string option
           CustomClass : string option
           Props : IHTMLProp list }
-        static member Empty =
+    let inline internal defaultOptions() =
             { Display = None
               Spacing = None
               Alignment = None
@@ -58,7 +58,7 @@ module Columns =
             | CustomClass customClass -> { result with CustomClass = customClass |> Some }
             | Props props -> { result with Props = props }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes
                         Classes.Container
                         [ opts.Alignment

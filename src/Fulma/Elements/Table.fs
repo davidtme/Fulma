@@ -27,14 +27,15 @@ module Table =
         | CustomClass of string
         | Props of IHTMLProp list
 
-    type private TableOptions =
+    type [<Fable.Core.CompileAsArray>] private TableOptions =
         { IsBordered : bool
           IsStripped : bool
           IsFullwidth : bool
           IsNarrow : bool
           CustomClass : string option
           Props : IHTMLProp list }
-        static member Empty =
+
+    let inline private defaultTableOptions() =
             { IsBordered = false
               IsStripped = false
               IsNarrow = false
@@ -52,7 +53,7 @@ module Table =
             | CustomClass customClass -> { result with CustomClass = customClass |> Some }
             | Props props -> { result with Props = props }
 
-        let opts = options |> List.fold parseOptions TableOptions.Empty
+        let opts = options |> List.fold parseOptions (defaultTableOptions())
         let classes = Helpers.classes Classes.Container [opts.CustomClass]
                         [ Classes.Style.IsBordered, opts.IsBordered
                           Classes.Style.IsStripped, opts.IsStripped

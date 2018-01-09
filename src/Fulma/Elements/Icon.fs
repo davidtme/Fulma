@@ -23,12 +23,12 @@ module Icon =
         | CustomClass of string
         | Props of IHTMLProp list
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Size : string option
           Position : string option
           CustomClass : string option
           Props : IHTMLProp list }
-        static member Empty =
+    let inline internal defaultOptions() =
             { Size = None
               Position = None
               CustomClass = None
@@ -46,7 +46,7 @@ module Icon =
             | CustomClass customClass -> { result with CustomClass = customClass |> Some }
             | Props props -> { result with Props = props }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes
                         Classes.Container
                         [ opts.Size; opts.Position; opts.CustomClass ]

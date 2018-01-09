@@ -69,14 +69,14 @@ module Tile =
         | IsParent
         | IsVertical
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Size : string option
           IsVertical : bool
           CustomClass : string option
           Props : IHTMLProp list
           Context : string option }
 
-        static member Empty =
+    let inline internal defaultOptions() =
             { Size = None
               IsVertical = false
               CustomClass = None
@@ -94,7 +94,7 @@ module Tile =
             | IsParent -> { result with Context = Classes.IsParent |> Some }
             | IsVertical -> { result with IsVertical = true }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
 
         div [ yield Helpers.classes
                         Classes.Container

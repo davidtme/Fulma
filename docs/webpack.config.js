@@ -50,20 +50,20 @@ module.exports = {
                 use: {
                     loader: "fable-loader",
                     options: {
-                        // babel: babelOptions,
+                        babel: babelOptions,
                         define: isProduction ? [] : ["DEBUG"],
                         fableCore: resolve("../../Fable/build/fable-core")
                     }
                 }
             },
-            // {
-            //     test: /\.js$/,
-            //     exclude: /node_modules/,
-            //     use: {
-            //         loader: 'babel-loader',
-            //         options: babelOptions
-            //     },
-            // },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: babelOptions
+                },
+            },
             {
                 test: /\.s(a|c)ss$/,
                 use: ["style-loader", "css-loader", "sass-loader"]

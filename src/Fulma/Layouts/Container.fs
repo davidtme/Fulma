@@ -25,13 +25,13 @@ module Container =
         | IsWideScreen
         | IsFullHD
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Props : IHTMLProp list
           CustomClass : string option
           IsFluid : bool
           Breakpoint : string option }
 
-        static member Empty =
+    let inline internal defaultOptions() =
             { Props = []
               CustomClass = None
               IsFluid = false
@@ -46,7 +46,7 @@ module Container =
             | IsFullHD -> { result with Breakpoint = Classes.Breakpoint.IsFullHD |> Some }
             | CustomClass customClass -> { result with CustomClass = Some customClass }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes Classes.Container
                         [opts.Breakpoint; opts.CustomClass]
                         [Classes.IsFluid, opts.IsFluid]

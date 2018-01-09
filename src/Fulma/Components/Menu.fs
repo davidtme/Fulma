@@ -22,12 +22,12 @@ module Menu =
             | CustomClass of string
             | OnClick of (React.MouseEvent -> unit)
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             {   Props : IHTMLProp list
                 IsActive : bool
                 CustomClass : string option
                 OnClick : (React.MouseEvent -> unit) option }
-            static member Empty =
+        let inline internal defaultOptions() =
                 { Props = []
                   IsActive = false
                   CustomClass = None
@@ -56,7 +56,7 @@ module Menu =
             | Item.CustomClass customClass -> { result with CustomClass = Some customClass }
             | Item.OnClick cb -> { result with OnClick = cb |> Some }
 
-        let opts = options |> List.fold parseOptions Item.Options.Empty
+        let opts = options |> List.fold parseOptions (Item.defaultOptions())
         let classes =
             [Classes.State.IsActive, opts.IsActive]
             |> Helpers.classes Classes.List [opts.CustomClass]

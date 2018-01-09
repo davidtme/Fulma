@@ -39,7 +39,7 @@ module Textarea =
         | CustomClass of string
         | HasFixedSize
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Size : string option
           IsLoading : bool
           IsFocused : bool
@@ -54,7 +54,7 @@ module Textarea =
           Props : IHTMLProp list
           CustomClass : string option }
 
-        static member Empty =
+    let inline internal defaultOptions() =
             { Size = None
               IsLoading = false
               IsFocused = false
@@ -88,7 +88,7 @@ module Textarea =
             | CustomClass customClass -> { result with CustomClass = customClass |> Some }
             | HasFixedSize -> { result with HasFixedSize = true }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes =
             Helpers.classes
                 Classes.Container

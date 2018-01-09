@@ -29,12 +29,12 @@ module Level =
             | IsMobile
             | CustomClass of string
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { Props : IHTMLProp list
               IsMobile : bool
               CustomClass : string option }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { Props = []
                   IsMobile = false
                   CustomClass = None }
@@ -46,12 +46,12 @@ module Level =
             | HasTextCentered
             | CustomClass of string
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { Props : IHTMLProp list
               HasTextCentered : bool
               CustomClass : string option }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { Props = []
                   HasTextCentered = false
                   CustomClass = None }
@@ -63,7 +63,7 @@ module Level =
             | Level.Option.IsMobile -> { result with IsMobile = true }
             | Level.CustomClass customClass -> { result with CustomClass = Some customClass }
 
-        let opts = options |> List.fold parseOptions Level.Options.Empty
+        let opts = options |> List.fold parseOptions (Level.defaultOptions())
         let classes = Helpers.classes Classes.Container [opts.CustomClass]
                         [ Classes.Mobile.IsHorizontal, opts.IsMobile ]
         nav (classes::opts.Props) children
@@ -85,7 +85,7 @@ module Level =
             | Item.HasTextCentered -> { result with HasTextCentered = true }
             | Item.CustomClass customClass -> { result with CustomClass = Some customClass }
 
-        let opts = options |> List.fold parseOptions Item.Options.Empty
+        let opts = options |> List.fold parseOptions (Item.defaultOptions())
         let classes = Helpers.classes Classes.Item.Container [opts.CustomClass]
                         [ Classes.Item.HasTextCentered, opts.HasTextCentered ]
         div (classes::opts.Props) children

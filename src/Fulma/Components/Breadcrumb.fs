@@ -36,14 +36,14 @@ module Breadcrumb =
         | Props of IHTMLProp list
         | CustomClass of string
 
-    type internal Options =
+    type [<Fable.Core.CompileAsArray>] internal Options =
         { Props : IHTMLProp list
           Alignment : string option
           Separator : string option
           Size : string option
           CustomClass : string option }
 
-        static member Empty =
+    let inline internal defaultOptions() =
             { Props = []
               Alignment = None
               Separator = None
@@ -64,7 +64,7 @@ module Breadcrumb =
             | Props props -> { result with Props = props }
             | CustomClass customClass -> { result with CustomClass = Some customClass }
 
-        let opts = options |> List.fold parseOptions Options.Empty
+        let opts = options |> List.fold parseOptions (defaultOptions())
         let classes = Helpers.classes
                         Classes.Container
                         [ opts.Alignment; opts.Separator; opts.Size; opts.CustomClass ]
@@ -80,12 +80,12 @@ module Breadcrumb =
             | Props of IHTMLProp list
             | CustomClass of string
 
-        type internal Options =
+        type [<Fable.Core.CompileAsArray>] internal Options =
             { Props : IHTMLProp list
               IsActive : bool
               CustomClass : string option }
 
-            static member Empty =
+        let inline internal defaultOptions() =
                 { Props = []
                   IsActive = false
                   CustomClass = None }
@@ -97,7 +97,7 @@ module Breadcrumb =
             | Item.Props props -> { result with Props = props }
             | Item.CustomClass customClass -> { result with CustomClass = Some customClass }
 
-        let opts = options |> List.fold parseOptions Item.Options.Empty
+        let opts = options |> List.fold parseOptions (Item.defaultOptions())
 
         li [ yield Helpers.classes "" [ opts.CustomClass ]
                         [ Classes.State.IsActive, opts.IsActive ]
