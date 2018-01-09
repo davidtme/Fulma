@@ -10,7 +10,7 @@ module Progress =
     module Classes =
         let [<Literal>] Container = "progress"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | Size of ISize
         | Color of IColor
         | Props of IHTMLProp list

@@ -3,9 +3,17 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="../../Fable/build/fable/Fable.Core.dll" />
     <ProjectReference Include="../src/Fulma.Elmish/Fulma.Elmish.fsproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="../../elmish/src/cmd.fs" />
+    <Compile Include="../../elmish/src/program.fs" />
+    <Compile Include="../../elmish-browser/src/prelude.fs" />
+    <Compile Include="../../elmish-browser/src/parser.fs" />
+    <Compile Include="../../elmish-browser/src/navigation.fs" />
+    <Compile Include="../../elmish-react/src/common.fs" />
+    <Compile Include="../../elmish-react/src/react.fs" />
     <Compile Include="src/Libs/Fable.Import.Marked.fs" />
     <Compile Include="src/Libs/Fable.Import.PrismJS.fs" />
     <Compile Include="src/Global.fs" />
@@ -160,5 +168,5 @@
     <Compile Include="src/State.fs" />
     <Compile Include="src/App.fs" />
   </ItemGroup>
-  <Import Project="..\.paket\Paket.Restore.targets" />
+  <!-- <Import Project="..\.paket\Paket.Restore.targets" /> -->
 </Project>

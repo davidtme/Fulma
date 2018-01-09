@@ -21,7 +21,7 @@ module Heading =
         module Spacing =
             let [<Literal>] IsNormal = "is-spaced"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         // Sies
         | Is1
         | Is2

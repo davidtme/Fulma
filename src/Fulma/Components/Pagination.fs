@@ -21,7 +21,7 @@ module Pagination =
         module State =
             let [<Literal>] IsCurrent = "is-current"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | IsCentered
         | IsRight
         | Size of ISize
@@ -42,7 +42,7 @@ module Pagination =
 
     module Link =
 
-        type Option =
+        type [<Fable.Core.CompileAsArray>] Option =
             | Current of bool
             | CustomClass of string
             | Props of IHTMLProp list

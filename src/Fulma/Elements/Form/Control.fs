@@ -15,7 +15,7 @@ module Control =
         module State =
             let [<Literal>] IsLoading = "is-loading"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | HasIconRight
         | HasIconLeft
         | IsLoading

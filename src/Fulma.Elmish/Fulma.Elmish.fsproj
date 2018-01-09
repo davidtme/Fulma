@@ -14,15 +14,21 @@
         <TargetFramework>netstandard1.6</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
+        <Compile Include="../../../fable-powerpack/src/Result.fs" />
+        <Compile Include="../../../fable-powerpack/src/Promise.fs" />
+        <Compile Include="../../../fable-powerpack/src/Fetch.fs" />
+        <Compile Include="../../../fable-powerpack/src/Date/Local.fs" />
+        <Compile Include="../../../fable-powerpack/src/Date/Format.fs" />
         <Compile Include="DatePicker/Types.fs" />
         <Compile Include="DatePicker/View.fs" />
     </ItemGroup>
     <ItemGroup>
+        <Reference Include="../../../Fable/build/fable/Fable.Core.dll" />
         <ProjectReference Include="../Fulma.Extensions/Fulma.Extensions.fsproj" />
     </ItemGroup>
     <!-- Add source files to "fable" folder in Nuget package -->
     <ItemGroup>
         <Content Include="*.fsproj; **\*.fs" PackagePath="fable\" />
     </ItemGroup>
-    <Import Project="..\..\.paket\Paket.Restore.targets" />
+    <!-- <Import Project="..\..\.paket\Paket.Restore.targets" /> -->
 </Project>

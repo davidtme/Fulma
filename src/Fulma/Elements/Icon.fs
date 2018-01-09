@@ -13,7 +13,7 @@ module Icon =
               let [<Literal>] Left = "is-left"
               let [<Literal>] Right = "is-right"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         // Sizes
         | Size of ISize
         // Position

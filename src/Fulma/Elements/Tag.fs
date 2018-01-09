@@ -10,7 +10,7 @@ module Tag =
     module Classes =
         let [<Literal>] Container = "tag"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | Size of ISize
         | Color of IColor
         | Props of IHTMLProp list

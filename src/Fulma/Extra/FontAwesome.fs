@@ -10,13 +10,13 @@ module FontAwesome =
     [<RequireQualifiedAccess>]
     module Fa =
         module I =
-            type IFontAwesomeIcon =
+            type [<Fable.Core.CompileAsArray>] IFontAwesomeIcon =
                 interface end
 
             // In order to update this DU please us the script located under: utils/extract-font-awesome.js
             // Generation for Font awesome 4.7.0
             [<StringEnum>]
-            type FontAwesomeIcons =
+            type [<Fable.Core.CompileAsArray>] FontAwesomeIcons =
                 // | [<CompiledName("fa-500px")>] 500px
                 | [<CompiledName("fa-address-book")>] AddressBook
                 | [<CompiledName("fa-address-book-o")>] AddressBookO
@@ -853,7 +853,7 @@ module FontAwesome =
 
         module Types =
             open I
-            type IIconSize =
+            type [<Fable.Core.CompileAsArray>] IIconSize =
                 | FaLarge
                 | Fa2x
                 | Fa3x
@@ -861,33 +861,33 @@ module FontAwesome =
                 | Fa5x
                 | Fw
 
-            type IBorder = FaBorder
+            type [<Fable.Core.CompileAsArray>] IBorder = FaBorder
 
-            type IPull =
+            type [<Fable.Core.CompileAsArray>] IPull =
                 | PullLeft
                 | PullRight
 
-            type IAnimation =
+            type [<Fable.Core.CompileAsArray>] IAnimation =
                 | Spin
                 | Pulse
 
-            type IRotation =
+            type [<Fable.Core.CompileAsArray>] IRotation =
                 | Rotate90
                 | Rotate180
                 | Rotate270
 
-            type IFLip =
+            type [<Fable.Core.CompileAsArray>] IFLip =
                 | Horizontal
                 | Vertical
 
-            type IColor =
+            type [<Fable.Core.CompileAsArray>] IColor =
                 | Inverse
 
-            type IStackChildSize =
+            type [<Fable.Core.CompileAsArray>] IStackChildSize =
                 | FaStack1x
                 | FaStack2x
 
-            type IconOption =
+            type [<Fable.Core.CompileAsArray>] IconOption =
                 | Size          of IIconSize
                 | Border        of IBorder
                 | Pull          of IPull
@@ -898,10 +898,10 @@ module FontAwesome =
                 | Animation     of IAnimation
                 | IsLi
 
-            type StackParentOption =
+            type [<Fable.Core.CompileAsArray>] StackParentOption =
                 | ParentSize of IIconSize
 
-            type StackChildOption =
+            type [<Fable.Core.CompileAsArray>] StackChildOption =
                 | ChildSize       of IStackChildSize
                 | ChildColor      of IColor
                 | ChildIcon       of IFontAwesomeIcon

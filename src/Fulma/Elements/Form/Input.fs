@@ -21,7 +21,7 @@ module Input =
             let [<Literal>] IsFullwidth = "is-fullwidth"
             let [<Literal>] IsInline = "is-inline"
 
-    type IInputType =
+    type [<Fable.Core.CompileAsArray>] IInputType =
         | Text
         | Password
         | DatetimeLocal
@@ -36,7 +36,7 @@ module Input =
         | Tel
         | ColorType
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | Size of ISize
         | Type of IInputType
         | Color of IColor

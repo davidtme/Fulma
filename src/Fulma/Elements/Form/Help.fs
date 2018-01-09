@@ -10,7 +10,7 @@ module Help =
     module Classes =
         let [<Literal>] Container = "help"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | CustomClass of string
         | Props of IHTMLProp list
         | Color of IColor

@@ -24,7 +24,7 @@ module Field =
         module Layout =
             let [<Literal>] IsHorizontal = "is-horizontal"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | HasAddons
         | HasAddonsCentered
         | HasAddonsRight
@@ -49,7 +49,7 @@ module Field =
               CustomClass = None
               Props = [] }
 
-    type FieldLabelOption =
+    type [<Fable.Core.CompileAsArray>] FieldLabelOption =
         | Size of ISize
         | CustomClass of string
         | Props of IHTMLProp list

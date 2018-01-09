@@ -24,7 +24,7 @@ module Level =
 
     module Level =
 
-        type Option =
+        type [<Fable.Core.CompileAsArray>] Option =
             | Props of IHTMLProp list
             | IsMobile
             | CustomClass of string
@@ -41,7 +41,7 @@ module Level =
 
     module Item =
 
-        type Option =
+        type [<Fable.Core.CompileAsArray>] Option =
             | Props of IHTMLProp list
             | HasTextCentered
             | CustomClass of string

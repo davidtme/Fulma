@@ -25,7 +25,7 @@ module Image =
               let [<Literal>] Is16by9 = "is-16by9"
               let [<Literal>] Is2by1 = "is-2by1"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         // Size
         | Is16x16
         | Is24x24

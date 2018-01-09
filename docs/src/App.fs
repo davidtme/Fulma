@@ -54,13 +54,13 @@ let root model dispatch =
                             div [ ClassName "column" ] [ pageHtml model.CurrentPage ] ] ] ] ]
 
 open Elmish.React
-open Elmish.Debug
+// open Elmish.Debug
 
 // App
 Program.mkProgram init update root
 |> Program.toNavigable (parseHash pageParser) urlUpdate
 |> Program.withReact "elmish-app"
-#if DEBUG
-|> Program.withDebugger
-#endif
+// #if DEBUG
+// |> Program.withDebugger
+// #endif
 |> Program.run

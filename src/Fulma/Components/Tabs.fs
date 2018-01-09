@@ -20,7 +20,7 @@ module Tabs =
             let [<Literal>] IsToggle = "is-toggle"
             let [<Literal>] IsFullwidth = "is-fullwidth"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | IsCentered
         | IsRight
         | Size of ISize
@@ -50,7 +50,7 @@ module Tabs =
 
     module Tab =
 
-        type Option =
+        type [<Fable.Core.CompileAsArray>] Option =
             | IsActive of bool
             | CustomClass of string
             | Props of IHTMLProp list

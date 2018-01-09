@@ -22,7 +22,7 @@ module Dropdown =
             module State =
                 let [<Literal>] IsActive = "is-active"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | IsActive of bool
         | IsHoverable
         | IsRight
@@ -45,7 +45,7 @@ module Dropdown =
 
     module Item =
 
-        type Option =
+        type [<Fable.Core.CompileAsArray>] Option =
             | IsActive of bool
             | Props of IHTMLProp list
             | CustomClass of string

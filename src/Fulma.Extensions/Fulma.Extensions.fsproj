@@ -23,11 +23,12 @@
         <Compile Include="Checkradio.fs" />
     </ItemGroup>
     <ItemGroup>
+        <Reference Include="../../../Fable/build/fable/Fable.Core.dll" />
         <ProjectReference Include="../Fulma/Fulma.fsproj" />
     </ItemGroup>
     <!-- Add source files to "fable" folder in Nuget package -->
     <ItemGroup>
         <Content Include="*.fsproj; **\*.fs" PackagePath="fable\" />
     </ItemGroup>
-    <Import Project="..\..\.paket\Paket.Restore.targets" />
+    <!-- <Import Project="..\..\.paket\Paket.Restore.targets" /> -->
 </Project>

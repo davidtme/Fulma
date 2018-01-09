@@ -29,7 +29,7 @@ module File =
         let [<Literal>] IsBoxed = "is-boxed"
         let [<Literal>] HasName = "has-name"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | CustomClass of string
         | Props of IHTMLProp list
         | Focused of bool
@@ -43,7 +43,7 @@ module File =
         | HasName
         | Color of IColor
 
-    type internal  Options =
+    type internal Options =
         { CustomClass : string option
           Props : IHTMLProp list
           IsFocused : bool

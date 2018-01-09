@@ -18,7 +18,7 @@ module Container =
             let [<Literal>] IsWideScreen = "is-widescreen"
             let [<Literal>] IsFullHD = "is-fullhd"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | Props of IHTMLProp list
         | CustomClass of string
         | IsFluid

@@ -31,7 +31,7 @@ module Tile =
             let [<Literal>] Is11 = "is-11"
             let [<Literal>] Is12 = "is-12"
 
-    type ISize =
+    type [<Fable.Core.CompileAsArray>] ISize =
         | Is1
         | Is2
         | Is3
@@ -60,7 +60,7 @@ module Tile =
         | Is11 -> Classes.Size.Is11
         | Is12 -> Classes.Size.Is12
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | Size of ISize
         | CustomClass of string
         | Props of IHTMLProp list

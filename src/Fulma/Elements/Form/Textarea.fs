@@ -22,7 +22,7 @@ module Textarea =
             let [<Literal>] IsFullwidth = "is-fullwidth"
             let [<Literal>] IsInline = "is-inline"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | Size of ISize
         | IsFullwidth
         | IsInline

@@ -19,7 +19,7 @@ module Table =
         module Spacing =
             let [<Literal>] IsNarrow = "is-narrow"
 
-    type TableOption =
+    type [<Fable.Core.CompileAsArray>] TableOption =
         | IsBordered
         | IsStripped
         | IsFullwidth

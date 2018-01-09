@@ -10,7 +10,7 @@ module Label =
     module Classes =
         let [<Literal>] Container = "label"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | Size of ISize
         | For of string
         | CustomClass of string

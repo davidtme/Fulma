@@ -1,7 +1,7 @@
 namespace Fulma
 
 module BulmaClasses =
-    type DisplayType =
+    type [<Fable.Core.CompileAsArray>] DisplayType =
         { Always : string
           Mobile : string
           Tablet : string

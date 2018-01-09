@@ -16,7 +16,7 @@ module Menu =
             let [<Literal>] IsActive = "is-active"
 
     module Item =
-        type Option =
+        type [<Fable.Core.CompileAsArray>] Option =
             | IsActive of bool
             | Props of IHTMLProp list
             | CustomClass of string

@@ -11,7 +11,7 @@ module Delete =
     module Classes =
         let [<Literal>] Container = "delete"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | Size of ISize
         | Props of IHTMLProp list
         | CustomClass of string

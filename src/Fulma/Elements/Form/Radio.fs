@@ -12,7 +12,7 @@ module Radio =
 
     module Input =
 
-        type Option =
+        type [<Fable.Core.CompileAsArray>] Option =
             | CustomClass of string
             | Props of IHTMLProp list
             | Name of string

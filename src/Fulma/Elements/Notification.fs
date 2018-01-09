@@ -12,7 +12,7 @@ module Notification =
         module Delete =
             let [<Literal>] Container = "delete"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | Color of IColor
         | CustomClass of string
         | Props of IHTMLProp list

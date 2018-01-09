@@ -12,7 +12,7 @@ module Message =
         let [<Literal>] Header = "message-header"
         let [<Literal>] Body = "message-body"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | Props of IHTMLProp list
         | Color of IColor
         | Size of ISize

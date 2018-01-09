@@ -21,7 +21,7 @@ module Columns =
             let [<Literal>] OnMobile = "on-mobile"
             let [<Literal>] OnlyDesktop = "only-desktop"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | IsCentered
         | IsVCentered
         | IsMultiline

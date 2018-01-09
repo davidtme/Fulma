@@ -18,7 +18,7 @@ module Color =
         let [<Literal>] IsWarning = "is-warning"
         let [<Literal>] IsDanger = "is-danger"
 
-    type IColor =
+    type [<Fable.Core.CompileAsArray>] IColor =
         | IsBlack
         | IsDark
         | IsLight
@@ -49,7 +49,7 @@ module Size =
         let [<Literal>] IsMedium = "is-medium"
         let [<Literal>] IsLarge = "is-large"
 
-    type ISize =
+    type [<Fable.Core.CompileAsArray>] ISize =
         | IsSmall
         | IsMedium
         | IsLarge
@@ -62,7 +62,7 @@ module Size =
 
 [<AutoOpen>]
 module Common =
-    type GenericOption =
+    type [<Fable.Core.CompileAsArray>] GenericOption =
         | CustomClass of string
         | Props of IHTMLProp list
 

@@ -22,7 +22,7 @@ module Button =
             let [<Literal>] IsOutlined = "is-outlined"
             let [<Literal>] IsInverted = "is-inverted"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         // Colors
         | Color of IColor
         | Size of ISize

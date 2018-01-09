@@ -27,7 +27,7 @@ module Hero =
             let [<Literal>] IsHalfHeight = "is-halfheight"
             let [<Literal>] IsFullHeight = "is-fullheight"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | IsBold
         | IsMedium
         | IsLarge

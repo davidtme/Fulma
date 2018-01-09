@@ -16,7 +16,7 @@ module Section =
             let [<Literal>] IsMedium = "is-medium"
             let [<Literal>] IsLarge = "is-large"
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | Props of IHTMLProp list
         | CustomClass of string
         | IsMedium

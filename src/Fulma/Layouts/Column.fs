@@ -218,7 +218,7 @@ module Column =
 
 
 
-    type ISize =
+    type [<Fable.Core.CompileAsArray>] ISize =
         | IsOneQuarter
         | IsOneThird
         | IsHalf
@@ -238,14 +238,14 @@ module Column =
         | IsNarrow
         | IsFull
 
-    type IScreen =
+    type [<Fable.Core.CompileAsArray>] IScreen =
         | All
         | Desktop
         | Tablet
         | Mobile
         | WideScreen
 
-    type Option =
+    type [<Fable.Core.CompileAsArray>] Option =
         | Width of IScreen * ISize
         | Offset of IScreen * ISize
         | CustomClass of string
